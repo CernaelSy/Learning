@@ -1,0 +1,15 @@
+body {
+    background-image: url(https://wonderfulengineering.com/wp-content/uploads/2014/07/HD-landscape-photographs-44.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: rgb(75, 50, 5);
+    letter-spacing: 3px;
+    font-family: "Alex Brush";
+    font-size: 70px;
+    text-align: center;
+    text-decoration: underline 3px;
+    text-shadow: 1px 1px 5px;
+}

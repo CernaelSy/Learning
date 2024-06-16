@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <!--Leaflet CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+        <!--The Script MUST be after the CSS link-->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        
+    
+        <style>
+            #mapid {
+                height: 600px;
+                width: 1000px;
+                margin: auto;
+                border: solid 3px rgb(141, 58, 28);
+                box-shadow: 1px 1px 5px rgb(97, 45, 7);
+            }
+        </style>
+
+</head>
+
+
+<body>
+
+    <h1>Welcome to Leaflet Map</h1>
+
+    <div id="mapid"></div>
+    
+    <script>
+        navigator.geolocation.watchPosition(success, error);
+
+        var map = L.map("mapid").setView([51.505, -0.09], 7);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        
+
+        function success(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+
+            let marker = L.marker([lat, lng]).addTo(map);
+            let circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+
+            map.fitBounds(circle.getBounds());       
+        }
+
+        function error(err) {
+            if (err.code === 1) {
+                alert("Please Allow Geolocation");
+            } else {
+                alert("Cannot get it");
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>
